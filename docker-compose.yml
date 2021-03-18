@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   webapi:
-    image: klinkbyclamrest
+    image: klinkby/clamrest
     build:
       context: .
       dockerfile: src/Klinkby.ClamREST/Dockerfile
@@ -13,7 +13,11 @@ services:
       - HOST=clamav
     depends_on:
       - clamav
+    healthcheck:
+      test: ["CMD", "wget", "http://localhost:5000/health", "-q", "-O", "-"]
+      timeout: 3s
+      interval: 10s
+      retries: 1
   clamav:
     image: mkodockx/docker-clamav:alpine
-   
   
