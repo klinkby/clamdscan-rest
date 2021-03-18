@@ -18,20 +18,22 @@ namespace Klinkby.ClamREST
         }
 
         public IConfiguration Configuration { get; }
-        public IWebHostEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Klinkby.ClamREST", Version = "v1" });
             });
             services.AddSingleton<IAppConfiguration>(_ => AppConfiguration.FromConfiguration(Configuration));
-            services.AddTransient(ClamClientFactory);
+            services.AddSingleton(svcs => new Func<IClamClient>(() => ClamClientFactory(svcs)));
+            services.AddHealthChecks()
+                    .AddCheck<HealthChecks.ClamPingHealthCheck>("clam-ping");
         }
+
+
 
         internal static IClamClient ClamClientFactory(IServiceProvider svcs)
         {
@@ -55,6 +57,7 @@ namespace Klinkby.ClamREST
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
             });
         }
     }

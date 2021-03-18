@@ -16,13 +16,13 @@ namespace Klinkby.ClamREST.Controllers
     public partial class ClamController : ControllerBase
     {
         private readonly ILogger<ClamController> _logger;
-        private readonly IClamClient clamClient;
+        private readonly Func<IClamClient> clamClientFactory;
         private readonly long maxFileSize;
 
-        public ClamController(ILogger<ClamController> logger, IAppConfiguration appConfiguration, IClamClient clamClient)
+        public ClamController(ILogger<ClamController> logger, IAppConfiguration appConfiguration, Func<IClamClient> clamClientFactory)
         {
             _logger = logger;
-            this.clamClient = clamClient;
+            this.clamClientFactory = clamClientFactory;
             maxFileSize = appConfiguration.MaxFileSize;
         }
 
@@ -64,7 +64,7 @@ namespace Klinkby.ClamREST.Controllers
             {
                 await using (var fi = file.OpenReadStream())
                 {
-                    using (clamClient)
+                    using (var clamClient = clamClientFactory())
                     {
                         await clamClient.InstreamAsync(fi);
                     }
