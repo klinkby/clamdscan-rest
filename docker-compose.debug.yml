@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  webapi:
+    image: klinkbyclamrest
+    build:
+      context: .
+      dockerfile: src/Klinkby.ClamREST/Dockerfile
+    ports:
+      - 5000:5000
+    environment:
+      - ASPNETCORE_URLS=http://+:5000
+      - ASPNETCORE_ENVIRONMENT=Development
+      - HOST=clamav
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
+    depends_on:
+      - clamav
+  clamav:
+    image: mkodockx/docker-clamav:alpine
+   
+  
+
