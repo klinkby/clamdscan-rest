@@ -4,8 +4,8 @@ services:
   webapi:
     image: klinkby/clamrest
     build:
-      context: .
-      dockerfile: src/Klinkby.ClamREST/Dockerfile
+      context: src/Klinkby.ClamREST
+      dockerfile: Dockerfile
     ports:
       - 5000:5000
     environment:
