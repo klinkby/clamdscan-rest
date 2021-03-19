@@ -2,7 +2,7 @@
 REST API with a single endpoint for on-demand malware scanning files using ClamAV.
 
 ## Usage
-Easiest way to get started is to run the prepackaged docker-compose
+Easiest way to get started is to run the prepackaged [docker-compose](https://github.com/klinkby/clamdscan-rest/blob/main/docker-compose.yml)
 ```sh
 # docker-compose up
 ```
