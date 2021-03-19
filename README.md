@@ -25,7 +25,7 @@ When up and running just launch the Swagger UI on http://localhost:5000/swagger/
 - Complete [docker compose](https://github.com/klinkby/clamdscan-rest/blob/main/docker-compose.yml) solution available, binding to [mkodockx/docker-clamav](https://hub.docker.com/repository/docker/mkodockx/docker-clamav) image
 
 ## Source code
-- [Web API application](https://github.com/klinkby/clamdscan-rest) available as [Docker container](https://hub.docker.com/repository/docker/klinkby/clamrest)
+- [Web API application](https://github.com/klinkby/clamdscan-rest) available as [Docker container](https://hub.docker.com/r/klinkby/clamrest)
 - [Clamd proxy library](https://github.com/klinkby/clamdscan) available as [NuGet](https://www.nuget.org/packages/Klinkby.Clam/)
 
 # License
