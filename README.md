@@ -1,6 +1,17 @@
 ## Summary
 REST API with a single endpoint for on-demand malware scanning files using ClamAV.
 
+## Usage
+Easiest way to get started is to run the prepackaged docker-compose
+```sh
+# docker-compose up
+```
+Or if you prefer to build from source make sure you have .NET 5 SDK and ClamAV installed, then from csproj root run 
+```sh
+$ dotnet run
+```
+When up and running just launch the Swagger UI on http://localhost:5000/swagger/index.html to start playing.
+
 ## Dependencies
 - A running ClamAV daemon it can connect via TCP, typically on port 3310. A docker-compose file is provided to supply this via Docker-internal network.
 
