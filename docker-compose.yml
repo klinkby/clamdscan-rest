@@ -13,7 +13,11 @@ services:
     depends_on:
       - clamav
     restart: always
+    healthcheck:
+      test: ["CMD", "wget", "http://localhost:5000/health", "-q", "-O", "-"]
+      timeout: 3s
+      interval: 10s
+      retries: 3    
   clamav:
     image: mkodockx/docker-clamav:alpine
     restart: always
-  

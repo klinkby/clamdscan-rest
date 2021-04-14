@@ -18,9 +18,6 @@ WORKDIR /app
 RUN adduser -D appuser && chown -R appuser /app 
 COPY --chown=appuser:appuser --from=publish /app/publish .
 USER appuser
-# run health check
-HEALTHCHECK --interval=10s --timeout=3s --retries=3 \
-  CMD wget http://localhost:5000/health -q -O - || exit 1
 # use exposed port
 ENV ASPNETCORE_URLS "http://+:5000"
 ENTRYPOINT ["dotnet", "Klinkby.ClamREST.dll"]
