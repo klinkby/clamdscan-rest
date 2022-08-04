@@ -6,7 +6,7 @@ Easiest way to get started is to run the prepackaged [docker-compose](https://gi
 ```sh
 # docker-compose up
 ```
-Or if you prefer to build from source make sure you have .NET 5 SDK and ClamAV installed, then from csproj root run 
+Or if you prefer to build from source make sure you have .NET 6 SDK and ClamAV installed, then from csproj root run 
 ```sh
 $ dotnet run
 ```
@@ -19,7 +19,7 @@ When up and running just launch the Swagger UI on http://localhost:5000/swagger/
 - Slim Alpine container image (~65 MB runtime memory)
 - Locked-down running with non-root user privileges
 - Non-blocking implementation (async/await).
-- Performant .net5 Kestrel web server
+- Performant .net6 Kestrel web server
 - Swagger/OpenAPI documentation
 - Health endpoint keeps an eye on clamd  TCP connection
 - Complete [docker compose](https://github.com/klinkby/clamdscan-rest/blob/main/docker-compose.yml) solution available, binding to [mkodockx/docker-clamav](https://hub.docker.com/repository/docker/mkodockx/docker-clamav) image
